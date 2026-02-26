@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 from openai import AzureOpenAI
-from config_streamlit import client, AZURE_OPENAI_DEPLOYMENT,*
+from config_streamlit import client, AZURE_OPENAI_DEPLOYMENT,system_prompt,user_prompt,insight_system_prompt,insight_user_prompt2
 def run_ai_cost_analysis(df):
   df=pd.read_excel("ppv_output_filtered_combined.xlsx")
   df.head()
