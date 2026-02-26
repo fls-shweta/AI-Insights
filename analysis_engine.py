@@ -4,7 +4,7 @@ import numpy as np
 from openai import AzureOpenAI
 from config_streamlit import client, AZURE_OPENAI_DEPLOYMENT
 def run_ai_cost_analysis(df):
-  df=pd.read_excel("/Workspace/Users/shwb-in@flsmidth.com/Query-snowflake-table/ppv_output_filtered_combined.xlsx")
+  df=pd.read_excel("ppv_output_filtered_combined.xlsx")
   df.head()
   cols_to_drop = [
     "ner_rule",
