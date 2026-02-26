@@ -2,24 +2,35 @@ import streamlit as st
 import pandas as pd
 from analysis_engine import run_ai_cost_analysis
 
+df = pd.read_excel("ppv_output_filtered_combined.xlsx")
+
 st.set_page_config(page_title="AI Based Insights", layout="wide")
 
 st.title("🤖 AI Based Insights")
 
-uploaded_file = st.file_uploader("Upload Cost Estimation Excel File", type=["xlsx"])
+# ---- Data Description ----
+st.markdown("""
+### 📊 Dataset Overview
 
-if uploaded_file is not None:
+This dataset contains supplier-level cost estimation data including:
 
-    df = pd.read_excel(uploaded_file)
+- Supplier name
+- Predicted cost vs last known cost
+- Lead times
+- Covered region and country
+- Item-level aggregation
 
-    st.subheader("Sample Data (First 5 Rows)")
-    st.dataframe(df.head())
+The AI engine analyzes cost variations, supplier performance, and regional distribution to generate executive-level insights.
+""")    
 
-    if st.button("Generate Insights"):
+st.subheader("Sample Data (First 5 Rows)")
+st.dataframe(df.head())
 
-        with st.spinner("Generating AI Insights..."):
+if st.button("Generate Insights"):
 
-            insights = run_ai_cost_analysis(df)
+    with st.spinner("Generating AI Insights..."):
 
-        st.subheader("Executive Insights")
-        st.markdown(insights)
+        insights = run_ai_cost_analysis(df)
+
+    st.subheader("Executive Insights")
+    st.markdown(insights)
